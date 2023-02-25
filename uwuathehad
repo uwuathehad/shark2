@@ -1,0 +1,115 @@
+local WorkspacePlayers = game:GetService("Workspace").Game.Players
+
+local Players = game:GetService('Players')
+
+local localplayer = Players.LocalPlayer
+
+local GuiService = game:GetService("GuiService")
+
+local Light = game:GetService("Lighting")
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+OrionLib:MakeNotification({
+
+    Name = "鲨鱼2",
+
+    Content = "正在加载.",
+
+    Image = "rbxassetid://4483345998",
+
+    Time = 10
+
+})
+
+game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+
+wait(4)
+
+OrionLib:MakeNotification({
+
+    Name = "鲨鱼2",
+
+    Content = "加载成功!",
+
+    Image = "rbxassetid://4483345998",
+
+    Time = 2
+
+})
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "鲨鱼2", HidePremium = false, IntroEnabled = false, ConfigFolder = "SB2Mod"})
+
+local BoatTab = Window:MakeTab({
+
+	Name = "免费船只",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
+
+})
+
+local BoatSection = BoatTab:AddSection({
+
+	Name = "船只选项"
+
+})
+
+BoatSection:AddDropdown({
+
+	Name = "选择你的免费船",
+
+	Default = "1",
+
+	Options = {"DuckyBoatBeta", "DuckyBoat", "BlueCanopyMotorboat", "BlueWoodenMotorboat", "UnicornBoat", "Jetski", "RedMarlin", "Sloop", "TugBoat", "SmallDinghyMotorboat", "JetskiDonut", "Marlin", "TubeBoat", "FishingBoat", "VikingShip", "SmallWoodenSailboat", "RedCanopyMotorboat", "Catamaran", "CombatBoat", "TourBoat", "Duckmarine", "PartyBoat", "MilitarySubmarine",  "GingerbreadSteamBoat", "Sleigh2022", "Snowmobile"},
+
+	Callback = function(Value)
+
+local ohString1 = (Value)
+
+game:GetService("ReplicatedStorage").EventsFolder.BoatSelection.UpdateHostBoat:FireServer(ohString1)
+
+	end    
+
+})
+
+local Workspace = game:GetService("Workspace")
+
+local Players = game:GetService("Players")
+
+local Clipon = true
+
+local VisualsTab = Window:MakeTab({
+
+	Name = "穿墙",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
+
+Stepped = game:GetService("RunService").Stepped:Connect(function()
+
+	if not Clipon == false then
+
+		for a, b in pairs(Workspace:GetChildren()) do
+
+        if b.Name == Players.LocalPlayer.Name then
+
+        for i, v in pairs(Workspace[Players.LocalPlayer.Name]:GetChildren()) do
+
+        if v:IsA("BasePart") then
+
+        v.CanCollide = false
+
+        end end end end
+
+	else
+
+		Stepped:Disconnect()
+
+	end
+
+end)
